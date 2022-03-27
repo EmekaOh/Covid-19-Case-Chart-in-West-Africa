@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 main {
     height: 100vh;
+}
+canvas {
+    width: 70%;
+    font-family: 'Anton', sans-serif !important;
+    background-color: #ff0000;
 }
