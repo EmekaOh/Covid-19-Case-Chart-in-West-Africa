@@ -16,8 +16,9 @@ let westAfricaCountries = [
 ];
 let covid19Data = [];
 let links = [];
-let confirmedCasesString = [];
-let confirmedCases = [];
+let confirmedCasesNumber1 = [];
+let confirmedCasesCountries = [];
+let confirmedCasesNumber2 = [];
 
 let options = {
   method: "GET",
@@ -55,17 +56,20 @@ for (let i = 0; i < westAfricaCountries.length; i++) {
 
 setTimeout(function () {
   for (let i = 0; i < covid19Data.length; i++) {
-    confirmedCasesString.push(covid19Data[i].replace(/[^0-9]/g, ""));
+    confirmedCasesNumber1.push(covid19Data[i].replace(/[^0-9]/g, ""));
+    confirmedCasesCountries.push(covid19Data[i].replace(/[^a-zA-Z]/g, ""));
   }
-  //   console.log(confirmedCasesString);
-  confirmedCases = confirmedCasesString.map(Number);
+
+  // console.log(confirmedCasesNumber1);
+  // console.log(confirmedCasesCountries);
+  // console.log(covid19Data);
+
+  confirmedCasesNumber2 = confirmedCasesNumber1.map(Number);
   Covid19Chart();
-  //   console.log(confirmedCases);
 }, 3000);
 
 function Covid19Chart() {
-  // Chart.defaults.global.defaultFontFamily: 'lato';
-  const labels = westAfricaCountries;
+  const labels = confirmedCasesCountries;
 
   const data = {
     labels: labels,
@@ -91,7 +95,7 @@ function Covid19Chart() {
         borderColor: "rgb(255, 255, 255)",
         borderWidth: 2,
         hoverBorderColor: "rgb(0, 0, 0)",
-        data: confirmedCases,
+        data: confirmedCasesNumber2,
       },
     ],
   };
@@ -106,7 +110,7 @@ function Covid19Chart() {
             // This more specific font property overrides the global property
             font: {
               size: 32,
-              family: 'lato'
+              family: "lato",
             },
           },
         },
